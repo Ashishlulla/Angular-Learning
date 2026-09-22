@@ -1,0 +1,22 @@
+<div class="employee-card">
+
+  <h2>Employee Card</h2>
+
+  <h3>Employee Details</h3>
+
+  <p>Employee Id: {{ id() }}</p>
+
+  <p>Employee Name: {{ name() }}</p>
+
+  <p>Department: {{ department() }}</p>
+
+  <p>Is Active: {{ isActive() }}</p>
+
+  <p>Monthly Salary: {{ monthlySalary() | currency:"INR" }}</p>
+  <p>joiningDate: {{joiningDate() |date: "dd-MM-yyyy"}}</p>
+
+  <button (click)="selectEmployee()">
+    Select Employee
+  </button>
+
+</div>
