@@ -1,0 +1,55 @@
+<div class="employee-card">
+    <h1>Employee Details</h1>
+    <p>Id : {{id()}}</p>
+    <p> Demonstration Purpose Uppercase Name: {{name() | uppercase}}</p>
+    <p>Demonstration Purpose Lowercase Name: {{name() | lowercase}}</p>
+    <p [ngStyle]="
+    {
+    'font-size': isActive() ?'larger':'large',
+    'font-weight': isActive() ? 'bold' : 'normal' 
+    }">Name: {{name()}}</p>
+    <p>Department: {{department()}}</p>
+    <p>Department information: @switch (department()) 
+        {
+            @case("IT"){
+                <span>Employee works in Information Tecyhnology Department.</span>
+            }
+            @case ("HR") {
+                <span>Employee works in Human Reource Department.</span>
+            }
+            @case ("Marketing") {
+                <span>Employee works in Marketing Department.</span>
+            }
+            @case ("Finance") {
+                <span>Employee works in Finance Department.</span>
+            }
+        }</p>
+    <p>Salary: {{salary() | currency:"INR"}}</p>
+    <p [ngClass]="isActive() ? 'active':'inactive'">Status: {{isActive() ? 'Active':'Inactive'}}</p>
+    <p>System Access: {{isActive() ? 'Employee can access the system': 'Employee access is diabled'}}</p>
+    <p>Joining Date: {{joiningDate() | date:"dd-MM-yyyy"}}</p>
+
+
+    <!-- //Employee Editor -->
+     <h2>Employee Editor</h2>
+    <label>Employee Name: </label>
+    <input [ngModel]="name()">
+    <br>
+    <br>
+    <label>Department: </label>
+    <input [ngModel]="department()">
+    <br>
+    <br>
+    <label>Salary: </label>
+    <input [ngModel]="salary()">
+    <br>
+    <br>
+    <label>Active: </label>
+    <input [ngModel]="isActive()">
+
+    <br>
+    <br>
+    <button (click)="ResetData()">Reset </button>
+
+
+</div>

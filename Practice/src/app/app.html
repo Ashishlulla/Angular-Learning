@@ -1,0 +1,11 @@
+@for (employee of employees; track employee.id) {
+  <app-employee-card
+  [id]="employee.id"
+  [name]="employee.name"
+  [department]="employee.department"
+  [salary]="employee.salary"
+  [isActive]="employee.isActive"
+  [joiningDate]="employee.joiningDate"
+  >
+  </app-employee-card>
+}
