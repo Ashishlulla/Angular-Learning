@@ -2,102 +2,70 @@ import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {UpperCasePipe, LowerCasePipe, CurrencyPipe, DatePipe, NgClass, NgStyle } from "@angular/common";
 import { EmployeeCard } from "./employee-card/employee-card";
+import { EmployeeService } from "./employee";
+import { Employee } from "./models/employee";
+import { EmployeeCounter } from "./employee-counter/employee-counter";
 
-interface Employee {
-  id: number;
-  name: string;
-  department: string;
-  salary: number;
-  isActive: boolean;
-  joiningDate: Date;
-}
+
+
+
 
 @Component({
-  imports: [FormsModule, EmployeeCard, NgClass, NgStyle, CurrencyPipe, DatePipe, UpperCasePipe, LowerCasePipe],
+  imports: [FormsModule, EmployeeCard, NgClass, NgStyle, CurrencyPipe, DatePipe, UpperCasePipe, LowerCasePipe, EmployeeCounter],
   selector: "app-root",
   styleUrl: "./app.css",
   templateUrl: "./app.html"
 })
+
+
+
 export class App {
 
-  protected readonly employee: Employee = {
-    id: 1001,
-    name: "Ashish",
-    department: "IT",
-    salary: 50000,
-    isActive: true,
-    joiningDate: new Date(2024, 5, 10)
-  };
+  constructor(private employeeService: EmployeeService){}
 
-  protected employees: Employee[] = [
+  protected showServiceMessage(): void
+  {
+    console.log(this.employeeService.getMessage());
+  }
+
+  protected showEmployees(): void
+  {
+     console.log(this.employeeService.getEmployees());
+  }
+
+  protected showEmployeeById(id: string): void
+  {
+      console.log(this.employeeService.getEmployeeById(id));
+  }
+
+  protected AdEmployee(): void
+  {
+    const employee: Employee=
     {
       id: 1001,
-      name: "Ashish",
-      department: "IT",
+      name: "Pushed Employee",
+      department: "Test dept.",
       salary: 50000,
-      isActive: true,
-      joiningDate: new Date(2024, 5, 10)
-    },
-    {
-      id: 1002,
-      name: "Rahul",
-      department: "HR",
-      salary: 45000,
-      isActive: true,
-      joiningDate: new Date(2023, 8, 15)
-    },
-    {
-      id: 1003,
-      name: "Priya",
-      department: "Finance",
-      salary: 55000,
-      isActive: false,
-      joiningDate: new Date(2022, 2, 20)
+      joiningDate: new Date(2026, 7, 1),
+      isActive: true
     }
-  ];
 
-  protected calculateAnnualSalary(salary: number): number {
-    return salary * 12;
+    this.employeeService.AddEmployee(employee);
   }
 
-  protected getEmployeeStatus(status: boolean): string {
-    return status ? "Active Employee" : "Inactive Employee";
+
+  protected GetActiveEmployees(): void
+  {
+    console.log(this.employeeService.getActiveEmployees());
   }
 
-  protected onEmployeeSelected(name: string): void {
-    console.log("Selected employee:", name);
+  protected GetITDepartmentEmployees(): void
+  {
+    console.log(this.employeeService.getITDepartmentsEmployee("IT"));
   }
 
-  protected showMesaage(): void {
-    console.log("User clicked me!");
-  }
-
-  protected changeName(): void {
-  }
-
-  protected updateSalary(): void {
-  }
-
-  protected resetSalary(): void {
-    this.employee.salary = 50000;
-  }
-
-  protected toggleEmployeeStatus(): void {
-    this.employee.isActive = !this.employee.isActive;
-  }
-
-  protected resetData(): void {
-    this.employee.name = "Ashish";
-    this.employee.salary = 50000;
-    this.employee.isActive = true;
-    this.employee.department = "IT";
-  }
-
-  protected changeDepartment(): void {
-    if (this.employee.department === "IT") {
-      this.employee.department = "HR";
-    } else {
-      this.employee.department = "IT";
-    }
+  protected DeleteEmployeeById(id:string): void
+  {
+    console.log(this.employeeService.deleteEmployeeById(id));
   }
 }

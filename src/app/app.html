@@ -1,100 +1,26 @@
 <h1>Angular App</h1>
+<button (click)="showServiceMessage()"> Show Message</button>
+<button (click)="showEmployees()">Show Employees</button>
+
+<label>Find employee by Id: </label>
+
+<input #employeeId type="number" placeholder="Enter employee id...">
+
+<button (click)="showEmployeeById(employeeId.value)"> Find Employee</button>
+<br>
+<br>
+<button (click)="AdEmployee()">Add Employee</button>
+<br>
+<br>
+<button (click)="GetActiveEmployees()">Get Active Employees</button>
+<br>
+<br>
+<button (click)="GetITDepartmentEmployees()">Get IT Employees</button>
+
+<br>
+<br>
+<input #employeeId type="number" placeholder="Enter employee Id to delete...">
+<button (click)="DeleteEmployeeById(employeeId.value)">Delete Employee</button>
 
 <hr>
-
-<h2>Employee Details</h2>
-
-<p>Employee Id: {{ employee.id }}</p>
-<p
-  [ngStyle]="{
-    'font-size': employee.isActive ? '20px' : '16px',
-    'font-weight': employee.isActive ? 'bold' : 'normal'
-  }">
-  Employee: {{ employee.name | uppercase}}
-</p>
-<p 
-[ngStyle]="{
-  'background': employee.isActive? 'green': 'red'}">Employee Name : {{employee.name}}</p>
-<p>Department: {{ employee.department }}</p>
-
-@switch(employee.department){
-  @case("IT"){
-    <p>Employee works in Information Technology</p>
-  }
-  @case("HR"){
-    <p>Employee works in Human Resource</p>
-  }
-  @case("Finance"){
-    <p>Employee works in Finance</p>
-  }
-  @default{
-    <p>Department not found</p>
-  }
-}
-
-<p>Monthly Salary: {{ employee.salary | currency:"USD"}}</p>
-
-<label>Employee Status</label>
-<input type="checkbox" [(ngModel)]="employee.isActive">
-
-<p [ngClass]="{active:employee.isActive, inactive: !employee.isActive}">
-  Status: {{ employee.isActive ? 'Active' : 'Inactive' }}
-</p>
-@if (employee.isActive) {
-  <p>You can access the system.</p>
-} @else {
-  <p>Employee is not active, so it cannot access the system.</p>
-}
-
-<p>Annual Salary: {{ calculateAnnualSalary(employee.salary) }}</p>
-<p>Joining Date: {{ employee.joiningDate | date:'dd-MM-yyyy' }}</p>
-
-<button (click)="showMesaage()">Click me!</button>
-
-<br>
-<br>
-
-<label>Employee Name</label>
-<input [(ngModel)]="employee.name">
-
-<button (click)="changeName()">Change Name</button>
-
-<br>
-<br>
-
-<label>Monthly Salary:</label>
-<input [(ngModel)]="employee.salary">
-
-<button (click)="updateSalary()">Update Salary</button>
-<button (click)="resetSalary()">Reset Salary</button>
-
-<br>
-<br>
-
-<button (click)="resetData()">Reset Data</button>
-
-<br>
-<br>
-
-<label>Department:</label>
-<input [(ngModel)]="employee.department">
-
-<button (click)="changeDepartment()">Change Department</button>
-
-<hr>
-
-<h2>Employee List</h2>
-
-@for (employee of employees; track employee.id) {
-
-  <app-employee-card
-    [id]="employee.id"
-    [name]="employee.name"
-    [department]="employee.department"
-    [isActive]="employee.isActive"
-    [monthlySalary]="employee.salary"
-    [joiningDate]="employee.joiningDate"
-    (employeeSelected)="onEmployeeSelected($event)">
-  </app-employee-card>
-
-}
+<app-employee-counter></app-employee-counter>
