@@ -1,0 +1,12 @@
+<h1>Employee Details</h1>
+
+<div>
+  <p><strong>ID:</strong> {{ employee?.id }}</p>
+  <p><strong>Name:</strong> {{ employee?.name }}</p>
+  <p><strong>Department:</strong> {{ employee?.department }}</p>
+  <p><strong>Salary:</strong> {{ employee?.salary }}</p>
+  <p><strong>Joining Date:</strong> {{ employee?.joiningDate | date:'dd-MM-yyyy' }}</p>
+  <p><strong>Status:</strong> {{ employee?.isActive ? 'Active' : 'Inactive' }}</p>
+</div>
+
+<a routerLink="/employees">Back to employees</a>

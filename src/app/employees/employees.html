@@ -1,0 +1,29 @@
+<h1>Employees</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Joining Date</th>
+      <th>Status</th>
+      <th>info</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (employee of employees; track employee.id) {
+      <tr>
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.department }}</td>
+        <td>{{ employee.salary }}</td>
+        <td>{{ employee.joiningDate | date:'dd-MM-yyyy' }}</td>
+        <td>{{ employee.isActive ? 'Active' : 'Inactive' }}</td>
+        <td><a [routerLink]="['/employee', employee.id]">Details</a></td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -47,8 +47,7 @@ export class EmployeeService {
       isActive : true,
       joiningDate : new Date(2025, 11, 1)
   }];
-
-  Employee employee: Employee={}
+  
 
   getMessage(): string{
     return "Hello Employee service";

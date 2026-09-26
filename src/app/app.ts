@@ -5,13 +5,14 @@ import { EmployeeCard } from "./employee-card/employee-card";
 import { EmployeeService } from "./employee";
 import { Employee } from "./models/employee";
 import { EmployeeCounter } from "./employee-counter/employee-counter";
+import { RouterOutlet, RouterLink } from "@angular/router";
 
 
 
 
 
 @Component({
-  imports: [FormsModule, EmployeeCard, NgClass, NgStyle, CurrencyPipe, DatePipe, UpperCasePipe, LowerCasePipe, EmployeeCounter],
+  imports: [FormsModule, EmployeeCard, NgClass, NgStyle, CurrencyPipe, DatePipe, UpperCasePipe, LowerCasePipe, EmployeeCounter, RouterOutlet, RouterLink],
   selector: "app-root",
   styleUrl: "./app.css",
   templateUrl: "./app.html"
