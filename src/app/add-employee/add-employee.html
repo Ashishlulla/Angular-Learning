@@ -1,0 +1,113 @@
+<h1>Add Employee</h1>
+
+<form  #employeeform = "ngForm" (ngSubmit)="AddEmployee(employee)">
+
+  <div>
+  <label>Name</label>
+
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="employee.name"
+    required
+    #name="ngModel">
+
+  @if (name.invalid && name.touched) {
+    <p style="color: red;">Name is required.</p>
+  }
+</div>
+
+  <br>
+
+  <div>
+    <label>Department</label>
+    <input
+      type="text"
+      name="department"
+      [(ngModel)]="employee.department"
+      #department = "ngModel">
+
+    @if (department.invalid && department.touched) 
+    {
+        <p style="color: red;">department is required.</p>
+    }
+  </div>
+
+  <br>
+
+  <div>
+  <label>Salary</label>
+
+  <input
+    type="number"
+    name="salary"
+    [(ngModel)]="employee.salary"
+    required
+    min="1"
+    #salary="ngModel">
+
+  @if (salary.invalid && salary.touched) {
+    @if (salary.errors?.['required']) {
+      <p>Salary is required.</p>
+    }
+
+    @if (salary.errors?.['min']) {
+      <p>Salary must be greater than 0.</p>
+    }
+  }
+</div>
+
+  <br>
+
+  <div>
+  <label>Joining Date</label>
+
+  <input
+    type="date"
+    name="joiningDate"
+    [(ngModel)]="employee.joiningDate"
+    required
+    #joiningDate="ngModel">
+
+  @if (joiningDate.invalid && joiningDate.touched) 
+  {
+    <p>Joining Date is required.</p>
+  }
+</div>
+
+  <br>
+
+  <div>
+    <label>
+      <input
+        type="checkbox"
+        name="isActive"
+        [(ngModel)]="employee.isActive">
+      Active
+    </label>
+  </div>
+
+  <br>
+
+  @if (employeeform.invalid && employeeform.touched) {
+  <p style="color: red;">Please fix the errors before submitting.</p>
+}
+
+<button type="submit" [disabled]="employeeform.invalid">
+  Add Employee
+</button>
+
+<button type="reset" (click)="employeeform.reset()">
+    Reset form
+</button>
+
+@if (name.dirty) {
+  <p>You changed the name.</p>
+}
+
+@if (name.touched) {
+  <p>You interacted with the name field.</p>
+}
+
+</form>
+
