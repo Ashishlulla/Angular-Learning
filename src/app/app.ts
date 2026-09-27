@@ -8,9 +8,6 @@ import { EmployeeCounter } from "./employee-counter/employee-counter";
 import { RouterOutlet, RouterLink } from "@angular/router";
 
 
-
-
-
 @Component({
   imports: [FormsModule, EmployeeCard, NgClass, NgStyle, CurrencyPipe, DatePipe, UpperCasePipe, LowerCasePipe, EmployeeCounter, RouterOutlet, RouterLink],
   selector: "app-root",
@@ -22,7 +19,10 @@ import { RouterOutlet, RouterLink } from "@angular/router";
 
 export class App {
 
-  constructor(private employeeService: EmployeeService){}
+  constructor(private employeeService: EmployeeService){
+    
+    
+  }
 
   protected showServiceMessage(): void
   {
@@ -31,6 +31,7 @@ export class App {
 
   protected showEmployees(): void
   {
+     
      console.log(this.employeeService.getEmployees());
   }
 
